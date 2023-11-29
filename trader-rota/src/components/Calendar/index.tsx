@@ -41,39 +41,25 @@ const Calendar = () => {
 
   const datesRow = (
     <tr>
-      <td>Traders</td>
-      <td>
+      <th>Traders</th>
+      <th>
         {dates.map((date) => {
           return <th>{date}</th>;
         })}
-      </td>
+      </th>
     </tr>
   );
+
+  const traders = ["Jack", "Maddie", "Vlad", "Jonathon"]
 
   return (
     <div>
       <table>
-        <h1 className="text-red-700">Trader shifts</h1>
+        <caption className="text-red-700">Trader shifts</caption>
+        <thead>
+        {datesRow}
+        </thead>
         <tbody>
-          {datesRow}
-          <tr>
-            <td>Jack</td>
-            <td>
-              {dates.map((date) => {
-                const matchingShift = Jack.shifts.find(
-                  (shift: { date: string }) => shift.date === date
-                );
-
-                if (matchingShift) {
-                  return <div>{matchingShift.shiftType}</div>;
-                }
-
-                return <div>None</div>;
-              })}
-            </td>
-          </tr>
-          <tr>Maddie</tr>
-          <tr>Jonathon</tr>
         </tbody>
       </table>
     </div>
