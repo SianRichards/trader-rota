@@ -1,6 +1,6 @@
 export const dummyData = [
   {
-    date: "2023-11-10",
+    date: "10/11/2023",
     dow: "Friday",
     shift: "AM",
     desk_1: "Maddie",
@@ -8,7 +8,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "2023-11-10",
+    date: "10/11/2023",
     dow: "Friday",
     shift: "PM",
     desk_1: "Jack",
@@ -16,7 +16,7 @@ export const dummyData = [
     desk_3: "Vlad",
   },
   {
-    date: "2023-11-11",
+    date: "11/11/2023",
     dow: "Saturday",
     shift: "AM",
     desk_1: "Girts",
@@ -24,7 +24,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "2023-11-11",
+    date: "11/11/2023",
     dow: "Saturday",
     shift: "PM",
     desk_1: "Vlad",
@@ -32,7 +32,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "2023-11-12",
+    date: "12/11/2023",
     dow: "Sunday",
     shift: "AM",
     desk_1: "Jack",
@@ -40,7 +40,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "2023-11-12",
+    date: "12/11/2023",
     dow: "Sunday",
     shift: "PM",
     desk_1: "Jonathon",
@@ -48,7 +48,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "2023-11-13",
+    date: "13/11/2023",
     dow: "Monday",
     shift: "AM",
     desk_1: "Maddie",
@@ -56,15 +56,15 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "2023-11-13",
+    date: "13/11/2023",
     dow: "Monday",
     shift: "PM",
     desk_1: "Jonathon",
     desk_2: "Vlad",
-    desk_3: "",
+    desk_3: "Jack",
   },
   {
-    date: "2023-11-14",
+    date: "14/11/2023",
     dow: "Tuesday",
     shift: "AM",
     desk_1: "Maddie",
@@ -91,67 +91,25 @@ export const Jack = {
 };
 
 dummyData.forEach((dummyEntry) => {
-  switch ("Jack") {
-    case dummyEntry.desk_1:
-      Jack.shifts.push({ date: dummyEntry.date, shiftType: dummyEntry.shift });
-      break;
-    case dummyEntry.desk_2:
-      Jack.shifts.push({ date: dummyEntry.date, shiftType: dummyEntry.shift });
-      break;
-    case dummyEntry.desk_3:
-      Jack.shifts.push({ date: dummyEntry.date, shiftType: dummyEntry.shift });
-      break;
-
-    default:
+  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
+  if (desks.includes("Jack")) {
+    Jack.shifts.push({ date: dummyEntry.date, shiftType: dummyEntry.shift });
   }
 });
 
 dummyData.forEach((dummyEntry) => {
-  switch ("Maddie") {
-    case dummyEntry.desk_1:
-      Maddie.shifts.push({
-        date: dummyEntry.date,
-        shiftType: dummyEntry.shift,
-      });
-      break;
-    case dummyEntry.desk_2:
-      Maddie.shifts.push({
-        date: dummyEntry.date,
-        shiftType: dummyEntry.shift,
-      });
-      break;
-    case dummyEntry.desk_3:
-      Maddie.shifts.push({
-        date: dummyEntry.date,
-        shiftType: dummyEntry.shift,
-      });
-      break;
-
-    default:
+  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
+  if (desks.includes("Maddie")) {
+    Maddie.shifts.push({ date: dummyEntry.date, shiftType: dummyEntry.shift });
   }
 });
 
 dummyData.forEach((dummyEntry) => {
-  switch ("Jonathon") {
-    case dummyEntry.desk_1:
-      Jonathon.shifts.push({
-        date: dummyEntry.date,
-        shiftType: dummyEntry.shift,
-      });
-      break;
-    case dummyEntry.desk_2:
-      Jonathon.shifts.push({
-        date: dummyEntry.date,
-        shiftType: dummyEntry.shift,
-      });
-      break;
-    case dummyEntry.desk_3:
-      Jonathon.shifts.push({
-        date: dummyEntry.date,
-        shiftType: dummyEntry.shift,
-      });
-      break;
-
-    default:
+  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
+  if (desks.includes("Jonathon")) {
+    Jonathon.shifts.push({
+      date: dummyEntry.date,
+      shiftType: dummyEntry.shift,
+    });
   }
 });
