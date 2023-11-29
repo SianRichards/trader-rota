@@ -1,49 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { dummyShiftData } from "../../data/dummyData";
 import { getTraderRotaInfo } from "../../api";
+import { IDummyShiftData } from "../../types";
 
 const Calendar = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState<any[]>([]);
+  const [formattedData, setFormattedData] = useState<IArrayOfRotaObjects>([]);
 
   useEffect(() => {
     getTraderRotaInfo().then((response) => {
-      setData(response);
+      setData(response.data);
     });
   }, []);
+
+  interface IArrayOfRotaObjects extends Array<IDummyShiftData> {}
+
+  useEffect(() => {
+    if (data) {
+      const arrayOfRotaObjects: IArrayOfRotaObjects = [];
+      data.forEach((rotaArray) => {
+        rotaArray.forEach((rotaObj: any) => {
+          arrayOfRotaObjects.push(rotaObj);
+        });
+      });
+      setFormattedData(arrayOfRotaObjects);
+    }
+  }, [data]);
 
   return (
     <div>
       <h1>Calendar</h1>
       <table>
-        {dummyShiftData.map((shiftEntry, index) => {
+        {formattedData.map((shiftEntry) => {
+          const { date, dow, shift, desk_1, desk_2, desk_3 } = shiftEntry;
           return (
-            <tr key={index}>
-              <td>{shiftEntry.date}</td>
-              <td>{shiftEntry.day}</td>
-              <td>
-                AM:
-                {shiftEntry.AM.map((AMShift, index) => {
-                  return (
-                    <div key={index}>
-                      <p>Desk 1: {AMShift.desk_1.name}</p>
-                      <p>Desk 2: {AMShift.desk_2.name}</p>
-                      <p>Desk 3: {AMShift.desk_3.name}</p>
-                    </div>
-                  );
-                })}
-              </td>
-              <td>
-                PM:
-                {shiftEntry.PM.map((AMShift, index) => {
-                  return (
-                    <div key={index}>
-                      <p>Desk 1: {AMShift.desk_1.name}</p>
-                      <p>Desk 2: {AMShift.desk_2.name}</p>
-                      <p>Desk 3: {AMShift.desk_3.name}</p>
-                    </div>
-                  );
-                })}
-              </td>
+            <tr>
+              <td>{date}</td>
+              <td>{dow}</td>
+              <td>{shift}</td>
+              <td>{desk_1}</td>
+              <td>{desk_2}</td>
+              <td>{desk_3}</td>
             </tr>
           );
         })}
