@@ -2,17 +2,25 @@ import React, { useEffect, useState } from "react";
 import { getTraderRotaInfo } from "../../api";
 import { IDummyShiftData } from "../../types";
 import { dummyData, Jack, Maddie, Jonathon } from "../../dummyData";
+import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
 
-console.log(Jack, Maddie, Jonathon);
+const dates = getAllDaysOfTheYear(
+  new Date("2023-11-10"),
+  new Date("2023-11-14")
+);
+
+console.log(dates, Jack);
 
 const Calendar = () => {
   const [data, setData] = useState<any[]>([]);
   const [formattedData, setFormattedData] = useState<IArrayOfRotaObjects>([]);
 
   useEffect(() => {
-    getTraderRotaInfo().then((response) => {
-      setData(response.data);
-    });
+    getTraderRotaInfo().then(
+      (response: { data: React.SetStateAction<any[]> }) => {
+        setData(response.data);
+      }
+    );
   }, []);
 
   interface IArrayOfRotaObjects extends Array<IDummyShiftData> {}
@@ -31,34 +39,41 @@ const Calendar = () => {
 
   // console.log(formattedDummyData)
 
+  const datesRow = (
+    <tr>
+      <td>Traders</td>
+      <td>
+        {dates.map((date) => {
+          return <th>{date}</th>;
+        })}
+      </td>
+    </tr>
+  );
+
   return (
     <div>
       <table>
         <h1 className="text-red-700">Trader shifts</h1>
         <tbody>
-          {/* <tr>
-            <th>Trader</th>
-            {formattedDummyData.map((dataEntry: any) => {
-              return (
-                <>
-                  <th>
-                    {dataEntry.date} {dataEntry.dow}
-                  </th>
-                </>
-              );
-            })}
+          {datesRow}
+          <tr>
+            <td>Jack</td>
+            <td>
+              {dates.map((date) => {
+                const matchingShift = Jack.shifts.find(
+                  (shift: { date: string }) => shift.date === date
+                );
+
+                if (matchingShift) {
+                  return <div>{matchingShift.shiftType}</div>;
+                }
+
+                return <div>None</div>;
+              })}
+            </td>
           </tr>
-          <tr>Jack</tr>
-          <div>
-            {formattedDummyData.map((dataEntry: any) => {
-              if (dataEntry.shift.traders.includes("Jack")) {
-                return <div>{dataEntry.shift.mOA}</div>;
-              }
-            })}
-          </div> */}
-          {/* <tr>Maddie</tr>
-          <tr>Vlad</tr>
-          <tr>Girts</tr> */}
+          <tr>Maddie</tr>
+          <tr>Jonathon</tr>
         </tbody>
       </table>
     </div>
