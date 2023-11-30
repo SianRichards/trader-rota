@@ -6,3 +6,8 @@ export interface IDummyShiftData {
   desk_2: String;
   desk_3: String;
 };
+
+export interface IShift {
+  date: string;
+  shiftType: string;
+}
