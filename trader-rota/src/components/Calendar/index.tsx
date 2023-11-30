@@ -36,7 +36,7 @@ const Calendar = () => {
     }
   }, [data]);
 
-  const traders = ["Jack", "Maddie", "Vlad", "Jonathon"];
+  const traders = ["Jack", "Maddie", "Vlad", "Jonathon", "Ben", "Girts"];
 
   const datesRow = (
     <tr>

@@ -98,6 +98,16 @@ const VladShifts = {
   shifts: [] as any,
 };
 
+const BenShifts = {
+  name: "Ben",
+  shifts: [] as any,
+};
+
+const GirtsShifts = {
+  name: "Girts",
+  shifts: [] as any,
+};
+
 dummyData.forEach((dummyEntry) => {
   const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
   if (desks.includes("Jack")) {
@@ -138,7 +148,34 @@ dummyData.forEach((dummyEntry) => {
   }
 });
 
-export const allShifts = [JonathonShifts, MaddieShifts, JackShifts, VladShifts];
+dummyData.forEach((dummyEntry) => {
+  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
+  if (desks.includes("Ben")) {
+    BenShifts.shifts.push({
+      date: dummyEntry.date,
+      shiftType: dummyEntry.shift,
+    });
+  }
+});
+
+dummyData.forEach((dummyEntry) => {
+  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
+  if (desks.includes("Girts")) {
+    GirtsShifts.shifts.push({
+      date: dummyEntry.date,
+      shiftType: dummyEntry.shift,
+    });
+  }
+});
+
+export const allShifts = [
+  JonathonShifts,
+  MaddieShifts,
+  JackShifts,
+  VladShifts,
+  BenShifts,
+  GirtsShifts,
+];
 
 // matchingShifts:
 // [
