@@ -78,38 +78,94 @@ interface IShift {
   shiftType: string;
 }
 
-export const Jonathon = {
+const JonathonShifts = {
+  name: "Jonathon",
   shifts: [] as any,
 };
 
-export const Maddie = {
+const MaddieShifts = {
+  name: "Maddie",
   shifts: [] as any,
 };
 
-export const Jack = {
+const JackShifts = {
+  name: "Jack",
+  shifts: [] as any,
+};
+
+const VladShifts = {
+  name: "Vlad",
   shifts: [] as any,
 };
 
 dummyData.forEach((dummyEntry) => {
   const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
   if (desks.includes("Jack")) {
-    Jack.shifts.push({ date: dummyEntry.date, shiftType: dummyEntry.shift });
+    JackShifts.shifts.push({
+      date: dummyEntry.date,
+      shiftType: dummyEntry.shift,
+    });
   }
 });
 
 dummyData.forEach((dummyEntry) => {
   const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
   if (desks.includes("Maddie")) {
-    Maddie.shifts.push({ date: dummyEntry.date, shiftType: dummyEntry.shift });
+    MaddieShifts.shifts.push({
+      date: dummyEntry.date,
+      shiftType: dummyEntry.shift,
+    });
   }
 });
 
 dummyData.forEach((dummyEntry) => {
   const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
   if (desks.includes("Jonathon")) {
-    Jonathon.shifts.push({
+    JonathonShifts.shifts.push({
       date: dummyEntry.date,
       shiftType: dummyEntry.shift,
     });
   }
 });
+
+dummyData.forEach((dummyEntry) => {
+  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
+  if (desks.includes("Vlad")) {
+    VladShifts.shifts.push({
+      date: dummyEntry.date,
+      shiftType: dummyEntry.shift,
+    });
+  }
+});
+
+export const allShifts = [JonathonShifts, MaddieShifts, JackShifts, VladShifts];
+
+// matchingShifts:
+// [
+//   {
+//     name: "Trader1",
+//     shifts: [{
+//       date: "10/11/2023",
+//       shiftType: "AM"
+//     }]
+//   },
+//   {
+//     name: "Trader2",
+//     shifts: [{
+//       date: "10/11/2023",
+//       shiftType: "AM"
+//     }]
+//   },
+// ]
+
+// traderShiftObject:
+//   {
+//     "name": "Trader1",
+//     "shifts": []
+// }
+
+// shift:
+//   {
+//     "date": "13/11/2023",
+//     "shiftType": "AM"
+// }
