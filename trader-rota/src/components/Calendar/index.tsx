@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getTraderRotaInfo } from "../../api";
 import { IDummyShiftData } from "../../types";
-import { allShifts } from "../../helpers/dataHelper";
+import { newAllShifts } from "../../helpers/dataHelper";
 import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
-import styles from "./index.module.scss";
+import { traders } from "../../helpers/dataHelper";
 
 const dates = getAllDaysOfTheYear(
   new Date("2023-11-10"),
@@ -33,11 +33,8 @@ const Calendar = () => {
         });
       });
       setFormattedData(arrayOfRotaObjects);
-      // console.log("data from BE:", formattedData)
     }
   }, [data]);
-
-  const traders = ["Jack", "Maddie", "Vlad", "Jonathon", "Ben", "Girts"];
 
   const datesRow = (
     <tr>
@@ -49,7 +46,7 @@ const Calendar = () => {
   );
 
   const filterShiftsByName = (trader: string) => {
-    return allShifts.filter((shiftObject: any) => {
+    return newAllShifts.filter((shiftObject: any) => {
       return shiftObject.name === trader;
     });
   };
@@ -67,8 +64,6 @@ const Calendar = () => {
     return shiftType;
     // output: shiftType to indicate whether the trader is working on the inputted date
   };
-
-  // console.log(allShifts)
 
   return (
     <div>
