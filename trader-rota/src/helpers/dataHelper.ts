@@ -1,49 +1,7 @@
 import { dummyData } from "../dummyData";
 
-const JonathonShifts = {
-  name: "Jonathon",
-  shifts: [] as any,
-};
-
-const MaddieShifts = {
-  name: "Maddie",
-  shifts: [] as any,
-};
-
-const JackShifts = {
-  name: "Jack",
-  shifts: [] as any,
-};
-
-const VladShifts = {
-  name: "Vlad",
-  shifts: [] as any,
-};
-
-const BenShifts = {
-  name: "Ben",
-  shifts: [] as any,
-};
-
-const GirtsShifts = {
-  name: "Girts",
-  shifts: [] as any,
-};
-
-// const addTraderShifts = (trader: string, data: any) => {
-//   data.forEach((entry: any) => {
-//     const desks = [entry.desk_1, entry.desk_2, entry.desk_3];
-//     if (desks.includes(trader)) {
-//       traderShifts.shifts.push({
-//         date: new Date(entry.date).toLocaleDateString("en-UK"),
-//         shiftType: entry.shift,
-//       });
-//     }
-//   });
-// }
-
 const extractTraderNames = (data: any) => {
-  let nameArray: any = [];
+  let nameArray: string[] = [];
   data.forEach((dataObject: any) => {
     let desks: any = ["desk_1", "desk_2", "desk_3"];
     desks.forEach((desk: string) => {
@@ -55,74 +13,28 @@ const extractTraderNames = (data: any) => {
   return nameArray;
 };
 
-const traders = extractTraderNames(dummyData);
-console.log("trader name array", traders);
+export const traders = extractTraderNames(dummyData);
 
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Jack")) {
-    JackShifts.shifts.push({
-      date: new Date(dummyEntry.date).toLocaleDateString("en-UK"),
-      shiftType: dummyEntry.shift,
+const addShiftsToTrader = (traders: any, data: any) => {
+  // input: array of traders & BE data
+  return traders.map((trader: any) => {
+    let shifts: any = [];
+    data.forEach((dataObj: any) => {
+      const desks = [dataObj.desk_1, dataObj.desk_2, dataObj.desk_3];
+      if (desks.includes(trader)) {
+        shifts.push({
+          date: new Date(dataObj.date).toLocaleDateString("en-UK"),
+          shiftType: dataObj.shift,
+        });
+      }
     });
-  }
-});
+    return {
+      name: trader,
+      shifts,
+    };
+  });
+  // output: an array of objects (one object per trader) that
+  // includes trader's name and their shifts
+};
 
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Maddie")) {
-    MaddieShifts.shifts.push({
-      date: new Date(dummyEntry.date).toLocaleDateString("en-UK"),
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Jonathon")) {
-    JonathonShifts.shifts.push({
-      date: new Date(dummyEntry.date).toLocaleDateString("en-UK"),
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Vlad")) {
-    VladShifts.shifts.push({
-      date: new Date(dummyEntry.date).toLocaleDateString("en-UK"),
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Ben")) {
-    BenShifts.shifts.push({
-      date: new Date(dummyEntry.date).toLocaleDateString("en-UK"),
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Girts")) {
-    GirtsShifts.shifts.push({
-      date: new Date(dummyEntry.date).toLocaleDateString("en-UK"),
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-export const allShifts = [
-  JonathonShifts,
-  MaddieShifts,
-  JackShifts,
-  VladShifts,
-  BenShifts,
-  GirtsShifts,
-];
+export const newAllShifts = addShiftsToTrader(traders, dummyData);
