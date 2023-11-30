@@ -10,4 +10,5 @@ export const getAllDaysOfTheYear = (startDate: Date, endDate: Date) => {
     currentDate.setDate(currentDate.getDate() + 1);
   }
   return daysOfTheYear;
+
 };
