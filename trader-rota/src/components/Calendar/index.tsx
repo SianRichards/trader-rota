@@ -40,9 +40,9 @@ const Calendar = () => {
 
   const datesRow = (
     <tr>
-      <th>Traders</th>
+      <th className="p-3">Traders</th>
       {dates.map((date) => {
-        return <th>{date}</th>;
+        return <th className="p-3 border border-black">{date}</th>;
       })}
     </tr>
   );
@@ -69,21 +69,23 @@ const Calendar = () => {
 
   return (
     <div>
-      <table className={styles.table}>
-        <caption className="text-red-700">Trader shifts</caption>
-        <tbody>
+      <table className="ml-5">
+        <caption className="font-bold p-3 text-xl">Trader shifts</caption>
+        <tbody className="bg-slate-300 border border-black">
           {datesRow}
           {traders.map((trader) => {
             const filteredShiftsByName = filterShiftsByName(trader);
             return (
               <tr>
-                <td>{trader}</td>
+                <td className="p-3 border border-black font-bold">{trader}</td>
                 {dates.map((date: any) => {
                   const shiftType = filterShiftsByDate(
                     filteredShiftsByName,
                     date
                   );
-                  return <>{shiftType}</>;
+                  return (
+                    <td className="p-3 border border-black">{shiftType}</td>
+                  );
                 })}
               </tr>
             );
