@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getTraderRotaInfo } from "../../api";
 import { IDummyShiftData } from "../../types";
-import { dummyData, allShifts } from "../../dummyData";
+import { allShifts } from "../../helpers/dataHelper";
 import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
 import styles from "./index.module.scss";
 
@@ -33,6 +33,7 @@ const Calendar = () => {
         });
       });
       setFormattedData(arrayOfRotaObjects);
+      // console.log("data from BE:", formattedData)
     }
   }, [data]);
 
@@ -66,6 +67,8 @@ const Calendar = () => {
     return shiftType;
     // output: shiftType to indicate whether the trader is working on the inputted date
   };
+
+  // console.log(allShifts)
 
   return (
     <div>
