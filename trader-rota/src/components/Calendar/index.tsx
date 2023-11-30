@@ -84,7 +84,15 @@ const Calendar = () => {
                     date
                   );
                   return (
-                    <td className="p-3 border border-black">{shiftType}</td>
+                    <td
+                      className={`p-3 border border-black ${
+                        shiftType === "AM" || shiftType === "PM"
+                          ? "bg-green-400"
+                          : "bg-slate-300"
+                      }`}
+                    >
+                      {shiftType}
+                    </td>
                   );
                 })}
               </tr>
