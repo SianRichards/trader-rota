@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getTraderRotaInfo } from "../../api";
 import { IDummyShiftData } from "../../types";
-import { dummyData, Jack, Maddie, Jonathon } from "../../dummyData";
+import { dummyData, allShifts } from "../../dummyData";
 import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
+import styles from "./index.module.scss";
 
 const dates = getAllDaysOfTheYear(
   new Date("2023-11-10"),
   new Date("2023-11-14")
 );
-
-console.log(dates, Jack);
 
 const Calendar = () => {
   const [data, setData] = useState<any[]>([]);
@@ -37,29 +36,58 @@ const Calendar = () => {
     }
   }, [data]);
 
-  // console.log(formattedDummyData)
+  const traders = ["Jack", "Maddie", "Vlad", "Jonathon"];
 
   const datesRow = (
     <tr>
       <th>Traders</th>
-      <th>
-        {dates.map((date) => {
-          return <th>{date}</th>;
-        })}
-      </th>
+      {dates.map((date) => {
+        return <th>{date}</th>;
+      })}
     </tr>
   );
 
-  const traders = ["Jack", "Maddie", "Vlad", "Jonathon"]
+  const filterShiftsByName = (trader: string) => {
+    return allShifts.filter((shiftObject: any) => {
+      return shiftObject.name === trader;
+    });
+  };
+
+  const filterShiftsByDate = (traderObject: any, date: any) => {
+    // input: object containing trader name and a list of their shifts and a date
+    let shiftType = "None";
+    traderObject.forEach((element: any) => {
+      return element.shifts.map((shift: any) => {
+        if (shift.date === date) {
+          shiftType = shift.shiftType;
+        }
+      });
+    });
+    return shiftType;
+    // output: shiftType to indicate whether the trader is working on the inputted date
+  };
 
   return (
     <div>
-      <table>
+      <table className={styles.table}>
         <caption className="text-red-700">Trader shifts</caption>
-        <thead>
-        {datesRow}
-        </thead>
         <tbody>
+          {datesRow}
+          {traders.map((trader) => {
+            const filteredShiftsByName = filterShiftsByName(trader);
+            return (
+              <tr>
+                <td>{trader}</td>
+                {dates.map((date: any) => {
+                  const shiftType = filterShiftsByDate(
+                    filteredShiftsByName,
+                    date
+                  );
+                  return <>{shiftType}</>;
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
