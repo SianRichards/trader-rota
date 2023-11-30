@@ -1,6 +1,6 @@
 export const dummyData = [
   {
-    date: "10/11/2023",
+    date: "2023-11-10",
     dow: "Friday",
     shift: "AM",
     desk_1: "Maddie",
@@ -8,7 +8,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "10/11/2023",
+    date: "2023-11-10",
     dow: "Friday",
     shift: "PM",
     desk_1: "Jack",
@@ -16,7 +16,7 @@ export const dummyData = [
     desk_3: "Vlad",
   },
   {
-    date: "11/11/2023",
+    date: "2023-11-11",
     dow: "Saturday",
     shift: "AM",
     desk_1: "Girts",
@@ -24,7 +24,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "11/11/2023",
+    date: "2023-11-11",
     dow: "Saturday",
     shift: "PM",
     desk_1: "Vlad",
@@ -32,7 +32,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "12/11/2023",
+    date: "2023-11-12",
     dow: "Sunday",
     shift: "AM",
     desk_1: "Jack",
@@ -40,7 +40,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "12/11/2023",
+    date: "2023-11-12",
     dow: "Sunday",
     shift: "PM",
     desk_1: "Jonathon",
@@ -48,7 +48,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "13/11/2023",
+    date: "2023-11-13",
     dow: "Monday",
     shift: "AM",
     desk_1: "Maddie",
@@ -56,7 +56,7 @@ export const dummyData = [
     desk_3: "",
   },
   {
-    date: "13/11/2023",
+    date: "2023-11-13",
     dow: "Monday",
     shift: "PM",
     desk_1: "Jonathon",
@@ -64,117 +64,13 @@ export const dummyData = [
     desk_3: "Jack",
   },
   {
-    date: "14/11/2023",
+    date: "2023-11-14",
     dow: "Tuesday",
     shift: "AM",
     desk_1: "Maddie",
     desk_2: "Girts",
     desk_3: "Ben",
   },
-];
-
-interface IShift {
-  date: string;
-  shiftType: string;
-}
-
-const JonathonShifts = {
-  name: "Jonathon",
-  shifts: [] as any,
-};
-
-const MaddieShifts = {
-  name: "Maddie",
-  shifts: [] as any,
-};
-
-const JackShifts = {
-  name: "Jack",
-  shifts: [] as any,
-};
-
-const VladShifts = {
-  name: "Vlad",
-  shifts: [] as any,
-};
-
-const BenShifts = {
-  name: "Ben",
-  shifts: [] as any,
-};
-
-const GirtsShifts = {
-  name: "Girts",
-  shifts: [] as any,
-};
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Jack")) {
-    JackShifts.shifts.push({
-      date: dummyEntry.date,
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Maddie")) {
-    MaddieShifts.shifts.push({
-      date: dummyEntry.date,
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Jonathon")) {
-    JonathonShifts.shifts.push({
-      date: dummyEntry.date,
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Vlad")) {
-    VladShifts.shifts.push({
-      date: dummyEntry.date,
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Ben")) {
-    BenShifts.shifts.push({
-      date: dummyEntry.date,
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-dummyData.forEach((dummyEntry) => {
-  const desks = [dummyEntry.desk_1, dummyEntry.desk_2, dummyEntry.desk_3];
-  if (desks.includes("Girts")) {
-    GirtsShifts.shifts.push({
-      date: dummyEntry.date,
-      shiftType: dummyEntry.shift,
-    });
-  }
-});
-
-export const allShifts = [
-  JonathonShifts,
-  MaddieShifts,
-  JackShifts,
-  VladShifts,
-  BenShifts,
-  GirtsShifts,
 ];
 
 // matchingShifts:
