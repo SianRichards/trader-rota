@@ -1,6 +1,4 @@
-import { dummyData } from "../dummyData";
-
-const extractTraderNames = (data: any) => {
+export const extractTraderNames = (data: any) => {
   let nameArray: string[] = [];
   data.forEach((dataObject: any) => {
     let desks: any = ["desk_1", "desk_2", "desk_3"];
@@ -13,10 +11,7 @@ const extractTraderNames = (data: any) => {
   return nameArray;
 };
 
-export const traders = extractTraderNames(dummyData);
-
-const addShiftsToTrader = (traders: any, data: any) => {
-  // input: array of traders & BE data
+export const addShiftsToTrader = (traders: any, data: any) => {
   return traders.map((trader: any) => {
     let shifts: any = [];
     data.forEach((dataObj: any) => {
@@ -33,8 +28,4 @@ const addShiftsToTrader = (traders: any, data: any) => {
       shifts,
     };
   });
-  // output: an array of objects (one object per trader) that
-  // includes trader's name and their shifts
 };
-
-export const newAllShifts = addShiftsToTrader(traders, dummyData);
