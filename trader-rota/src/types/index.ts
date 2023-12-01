@@ -1,10 +1,10 @@
 export interface IShiftData {
-  date: String;
-  dow: String;
-  shift: String;
-  desk_1: String;
-  desk_2: String;
-  desk_3: String;
+  date: string;
+  dow: string;
+  shift: string;
+  desk_1: string;
+  desk_2: string;
+  desk_3: string;
 }
 
 export interface IShift {
