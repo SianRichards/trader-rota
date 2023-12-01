@@ -4,18 +4,17 @@ import { IDummyShiftData } from "../../types";
 import {
   extractTraderNames,
   addShiftsToTrader,
+  getStartDate,
+  getEndDate,
+  getArrayOfDates,
 } from "../../helpers/dataHelper";
 import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
-
-const dates = getAllDaysOfTheYear(
-  new Date("2023-11-10"),
-  new Date("2023-11-18")
-);
 
 const Calendar = () => {
   const [data, setData] = useState<any[]>([]);
   const [formattedData, setFormattedData] = useState<IArrayOfRotaObjects>([]);
   const [traders, setTraders] = useState<any[]>([]);
+  const [dates, setDates] = useState<any[]>([]);
 
   useEffect(() => {
     getTraderRotaInfo().then(
@@ -37,6 +36,11 @@ const Calendar = () => {
     if (formattedData) {
       const tradersArray = extractTraderNames(formattedData);
       setTraders(tradersArray);
+      const datesArray = getArrayOfDates(formattedData);
+      const startDate = getStartDate(datesArray);
+      const endDate = getEndDate(datesArray);
+      const dates = getAllDaysOfTheYear(new Date(startDate), new Date(endDate));
+      setDates(dates);
     }
   }, [formattedData]);
 
