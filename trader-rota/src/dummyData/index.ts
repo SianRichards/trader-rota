@@ -73,32 +73,103 @@ export const dummyData = [
   },
 ];
 
-// matchingShifts:
-// [
-//   {
-//     name: "Trader1",
-//     shifts: [{
-//       date: "10/11/2023",
-//       shiftType: "AM"
-//     }]
-//   },
-//   {
-//     name: "Trader2",
-//     shifts: [{
-//       date: "10/11/2023",
-//       shiftType: "AM"
-//     }]
-//   },
-// ]
-
-// traderShiftObject:
-//   {
-//     "name": "Trader1",
-//     "shifts": []
-// }
-
-// shift:
-//   {
-//     "date": "13/11/2023",
-//     "shiftType": "AM"
-// }
+export const arrayOfTraderObjects = [
+  {
+    name: "Maddie",
+    shifts: [
+      {
+        date: "10/11/2023",
+        shiftType: "AM",
+      },
+      {
+        date: "13/11/2023",
+        shiftType: "AM",
+      },
+      {
+        date: "14/11/2023",
+        shiftType: "AM",
+      },
+    ],
+  },
+  {
+    name: "Ben",
+    shifts: [
+      {
+        date: "10/11/2023",
+        shiftType: "AM",
+      },
+      {
+        date: "14/11/2023",
+        shiftType: "AM",
+      },
+    ],
+  },
+  {
+    name: "Jack",
+    shifts: [
+      {
+        date: "10/11/2023",
+        shiftType: "PM",
+      },
+      {
+        date: "12/11/2023",
+        shiftType: "AM",
+      },
+      {
+        date: "13/11/2023",
+        shiftType: "AM",
+      },
+      {
+        date: "13/11/2023",
+        shiftType: "PM",
+      },
+    ],
+  },
+  {
+    name: "Jonathon",
+    shifts: [
+      {
+        date: "10/11/2023",
+        shiftType: "PM",
+      },
+      {
+        date: "12/11/2023",
+        shiftType: "PM",
+      },
+      {
+        date: "13/11/2023",
+        shiftType: "PM",
+      },
+    ],
+  },
+  {
+    name: "Vlad",
+    shifts: [
+      {
+        date: "10/11/2023",
+        shiftType: "PM",
+      },
+      {
+        date: "11/11/2023",
+        shiftType: "PM",
+      },
+      {
+        date: "13/11/2023",
+        shiftType: "PM",
+      },
+    ],
+  },
+  {
+    name: "Girts",
+    shifts: [
+      {
+        date: "11/11/2023",
+        shiftType: "AM",
+      },
+      {
+        date: "14/11/2023",
+        shiftType: "AM",
+      },
+    ],
+  },
+];
