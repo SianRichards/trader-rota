@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { getTraderRotaInfo } from "../../api";
 import { IDummyShiftData } from "../../types";
-import { newAllShifts } from "../../helpers/dataHelper";
+import {
+  extractTraderNames,
+  addShiftsToTrader,
+} from "../../helpers/dataHelper";
 import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
-import { traders } from "../../helpers/dataHelper";
 
 const dates = getAllDaysOfTheYear(
   new Date("2023-11-10"),
-  new Date("2023-11-14")
+  new Date("2023-11-18")
 );
 
 const Calendar = () => {
   const [data, setData] = useState<any[]>([]);
   const [formattedData, setFormattedData] = useState<IArrayOfRotaObjects>([]);
+  const [traders, setTraders] = useState<any[]>([]);
 
   useEffect(() => {
     getTraderRotaInfo().then(
@@ -26,15 +29,16 @@ const Calendar = () => {
 
   useEffect(() => {
     if (data) {
-      const arrayOfRotaObjects: IArrayOfRotaObjects = [];
-      data.forEach((rotaArray) => {
-        rotaArray.forEach((rotaObj: any) => {
-          arrayOfRotaObjects.push(rotaObj);
-        });
-      });
-      setFormattedData(arrayOfRotaObjects);
+      setFormattedData(data[0]);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (formattedData) {
+      const tradersArray = extractTraderNames(formattedData);
+      setTraders(tradersArray);
+    }
+  }, [formattedData]);
 
   const datesRow = (
     <tr>
@@ -44,6 +48,8 @@ const Calendar = () => {
       })}
     </tr>
   );
+
+  const newAllShifts = addShiftsToTrader(traders, formattedData);
 
   const filterShiftsByName = (trader: string) => {
     return newAllShifts.filter((shiftObject: any) => {
