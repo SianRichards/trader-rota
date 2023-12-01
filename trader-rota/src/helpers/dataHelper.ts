@@ -29,3 +29,27 @@ export const addShiftsToTrader = (traders: any, data: any) => {
     };
   });
 };
+
+export const getArrayOfDates = (data: any) => {
+  let datesArray: any[] = [];
+  data.map((shift: any) => {
+    if (!datesArray.includes(shift.date)) {
+      datesArray.push(shift.date);
+    }
+  });
+  return datesArray;
+};
+
+export const getStartDate = (arrayOfDates: any) => {
+  const orderedDates = arrayOfDates.sort((a: string, b: string) => {
+    return Date.parse(a) - Date.parse(b);
+  });
+  return orderedDates[0];
+};
+
+export const getEndDate = (arrayOfDates: any) => {
+  const orderedDates = arrayOfDates.sort((a: string, b: string) => {
+    return Date.parse(b) - Date.parse(a);
+  });
+  return orderedDates[0];
+};
