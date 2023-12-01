@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getTraderRotaInfo } from "../../api";
-import { IData, IRotaPlan } from "../../types";
+import {
+  IData,
+  IRotaPlan,
+  IShift,
+  IShiftsPerTrader,
+  IShiftsPerTraderArray,
+} from "../../types";
 import {
   extractTraderNames,
   addShiftsToTrader,
@@ -52,16 +58,19 @@ const Calendar = () => {
   const newAllShifts = addShiftsToTrader(traders, formattedData);
 
   const filterShiftsByName = (trader: string) => {
-    return newAllShifts.filter((shiftObject: any) => {
+    return newAllShifts.filter((shiftObject: IShiftsPerTrader) => {
       return shiftObject.name === trader;
     });
   };
 
-  const filterShiftsByDate = (traderObject: any, date: any) => {
+  const filterShiftsByDate = (
+    traderObject: IShiftsPerTraderArray,
+    date: string
+  ) => {
     // input: object containing trader name and a list of their shifts and a date
     let shiftType = "None";
-    traderObject.forEach((element: any) => {
-      return element.shifts.map((shift: any) => {
+    traderObject.forEach((element: IShiftsPerTrader) => {
+      return element.shifts.map((shift: IShift) => {
         if (shift.date === date) {
           shiftType = shift.shiftType;
         }
@@ -82,7 +91,7 @@ const Calendar = () => {
             return (
               <tr>
                 <td className="p-3 border border-black font-bold">{trader}</td>
-                {dates.map((date: any) => {
+                {dates.map((date: string) => {
                   const shiftType = filterShiftsByDate(
                     filteredShiftsByName,
                     date
