@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTraderRotaInfo } from "../../api";
-import { IDummyShiftData } from "../../types";
+import { IData, IRotaPlan } from "../../types";
 import {
   extractTraderNames,
   addShiftsToTrader,
@@ -11,20 +11,16 @@ import {
 import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
 
 const Calendar = () => {
-  const [data, setData] = useState<any[]>([]);
-  const [formattedData, setFormattedData] = useState<IArrayOfRotaObjects>([]);
-  const [traders, setTraders] = useState<any[]>([]);
-  const [dates, setDates] = useState<any[]>([]);
+  const [data, setData] = useState<IData>([]);
+  const [formattedData, setFormattedData] = useState<IRotaPlan>([]);
+  const [traders, setTraders] = useState<Array<string>>([]);
+  const [dates, setDates] = useState<Array<string>>([]);
 
   useEffect(() => {
-    getTraderRotaInfo().then(
-      (response: { data: React.SetStateAction<any[]> }) => {
-        setData(response.data);
-      }
-    );
+    getTraderRotaInfo().then((response: { data: IData }) => {
+      setData(response.data);
+    });
   }, []);
-
-  interface IArrayOfRotaObjects extends Array<IDummyShiftData> {}
 
   useEffect(() => {
     if (data) {
