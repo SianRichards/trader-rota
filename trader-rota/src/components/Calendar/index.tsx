@@ -3,9 +3,6 @@ import { getTraderRotaInfo } from "../../api";
 import {
   IData,
   IRotaPlan,
-  IShift,
-  IShiftsPerTrader,
-  IShiftsPerTraderArray,
 } from "../../types";
 import {
   extractTraderNames,
@@ -15,6 +12,10 @@ import {
   getArrayOfDates,
 } from "../../helpers/dataHelper";
 import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
+import {
+  filterShiftsByDate,
+  filterShiftsByName,
+} from "../../helpers/tableHelpers";
 
 const Calendar = () => {
   const [data, setData] = useState<IData>([]);
@@ -48,29 +49,6 @@ const Calendar = () => {
 
   const newAllShifts = addShiftsToTrader(traders, formattedData);
 
-  const filterShiftsByName = (trader: string) => {
-    return newAllShifts.filter((shiftObject: IShiftsPerTrader) => {
-      return shiftObject.name === trader;
-    });
-  };
-
-  const filterShiftsByDate = (
-    traderObject: IShiftsPerTraderArray,
-    date: string
-  ) => {
-    // input: object containing trader name and a list of their shifts and a date
-    let shiftType = "None";
-    traderObject.forEach((element: IShiftsPerTrader) => {
-      return element.shifts.map((shift: IShift) => {
-        if (shift.date === date) {
-          shiftType = shift.shiftType;
-        }
-      });
-    });
-    return shiftType;
-    // output: shiftType to indicate whether the trader is working on the inputted date
-  };
-
   const datesRow = (
     <tr>
       <th className="p-3">Traders</th>
@@ -83,7 +61,7 @@ const Calendar = () => {
   const tradersRow = (
     <>
       {traders.map((trader) => {
-        const filteredShiftsByName = filterShiftsByName(trader);
+        const filteredShiftsByName = filterShiftsByName(trader, newAllShifts);
         return (
           <tr>
             <td className="p-3 border border-black font-bold">{trader}</td>
