@@ -15,3 +15,10 @@ export interface IShift {
 export type IRotaPlan = Array<IShiftData>;
 
 export type IData = Array<IRotaPlan>;
+
+export interface IShiftsPerTrader {
+  name: string;
+  shifts: Array<IShift>;
+}
+
+export type IShiftsPerTraderArray = Array<IShiftsPerTrader>;
