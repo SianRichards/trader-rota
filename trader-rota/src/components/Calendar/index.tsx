@@ -29,7 +29,7 @@ const Calendar = () => {
   }, []);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.length !== 0) {
       setFormattedData(data[0]);
     }
   }, [data]);
@@ -45,15 +45,6 @@ const Calendar = () => {
       setDates(dates);
     }
   }, [formattedData]);
-
-  const datesRow = (
-    <tr>
-      <th className="p-3">Traders</th>
-      {dates.map((date) => {
-        return <th className="p-3 border border-black">{date}</th>;
-      })}
-    </tr>
-  );
 
   const newAllShifts = addShiftsToTrader(traders, formattedData);
 
@@ -80,37 +71,49 @@ const Calendar = () => {
     // output: shiftType to indicate whether the trader is working on the inputted date
   };
 
+  const datesRow = (
+    <tr>
+      <th className="p-3">Traders</th>
+      {dates.map((date) => {
+        return <th className="p-3 border border-black">{date}</th>;
+      })}
+    </tr>
+  );
+
+  const tradersRow = (
+    <>
+      {traders.map((trader) => {
+        const filteredShiftsByName = filterShiftsByName(trader);
+        return (
+          <tr>
+            <td className="p-3 border border-black font-bold">{trader}</td>
+            {dates.map((date: string) => {
+              const shiftType = filterShiftsByDate(filteredShiftsByName, date);
+              return (
+                <td
+                  className={`p-3 border border-black ${
+                    shiftType === "AM" || shiftType === "PM"
+                      ? "bg-green-400"
+                      : "bg-slate-300"
+                  }`}
+                >
+                  {shiftType}
+                </td>
+              );
+            })}
+          </tr>
+        );
+      })}
+    </>
+  );
+
   return (
     <div>
-      <table className="ml-5">
+      <table className="m-5">
         <caption className="font-bold p-3 text-xl">Trader shifts</caption>
         <tbody className="bg-slate-300 border border-black">
           {datesRow}
-          {traders.map((trader) => {
-            const filteredShiftsByName = filterShiftsByName(trader);
-            return (
-              <tr>
-                <td className="p-3 border border-black font-bold">{trader}</td>
-                {dates.map((date: string) => {
-                  const shiftType = filterShiftsByDate(
-                    filteredShiftsByName,
-                    date
-                  );
-                  return (
-                    <td
-                      className={`p-3 border border-black ${
-                        shiftType === "AM" || shiftType === "PM"
-                          ? "bg-green-400"
-                          : "bg-slate-300"
-                      }`}
-                    >
-                      {shiftType}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
+          {tradersRow}
         </tbody>
       </table>
     </div>
