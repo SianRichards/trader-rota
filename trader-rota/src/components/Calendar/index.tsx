@@ -12,10 +12,7 @@ import {
   getArrayOfDates,
 } from "../../helpers/dataHelper";
 import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
-import {
-  filterShiftsByDate,
-  filterShiftsByName,
-} from "../../helpers/tableHelpers";
+import { filterShiftsByDate } from "../../helpers/tableHelpers";
 
 const Calendar = () => {
   const [data, setData] = useState<TOriginalForm>([]);
@@ -61,13 +58,12 @@ const Calendar = () => {
 
   const tradersRow = (
     <>
-      {traders.map((trader) => {
-        const filteredShiftsByName = filterShiftsByName(trader, newAllShifts);
+      {newAllShifts.map((traderObject) => {
         return (
           <tr>
-            <td className="p-3 border border-black font-bold">{trader}</td>
+            <td>{traderObject.name}</td>
             {dates.map((date: string) => {
-              const shiftType = filterShiftsByDate(filteredShiftsByName, date);
+              const shiftType = filterShiftsByDate(traderObject, date);
               return (
                 <td
                   className={`p-3 border border-black ${
