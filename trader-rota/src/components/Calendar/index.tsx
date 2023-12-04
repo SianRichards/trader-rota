@@ -10,18 +10,17 @@ import {
   getStartDate,
   getEndDate,
   getArrayOfDates,
-} from "../../helpers/dataHelper";
-import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
-import {
-  filterShiftsByDate,
-} from "../../helpers/tableHelpers";
+} from "../../helpers/data";
+import { getAllDaysOfTheYear } from "../../helpers/calendar";
+import { filterShiftsByDate } from "../../helpers/table";
+import { IDate } from "../../types/newDataTypes";
 
 const Calendar = () => {
   const [data, setData] = useState<TOriginalForm>([]);
   const [formattedData, setFormattedData] =
     useState<TOriginalFormArrayOfObjects>([]);
   const [traders, setTraders] = useState<Array<string>>([]);
-  const [dates, setDates] = useState<Array<string>>([]);
+  const [dates, setDates] = useState<Array<IDate>>([]);
 
   useEffect(() => {
     getTraderRotaInfo().then((response: { data: TOriginalForm }) => {
@@ -53,7 +52,12 @@ const Calendar = () => {
     <tr>
       <th className="p-3">Traders</th>
       {dates.map((date) => {
-        return <th className="p-3 border border-black">{date}</th>;
+        return (
+          <th className="p-3 border border-black">
+            {date.date}
+            <p>{date.day}</p>
+          </th>
+        );
       })}
     </tr>
   );
@@ -64,8 +68,11 @@ const Calendar = () => {
         return (
           <tr>
             <td>{traderObject.name}</td>
-            {dates.map((date: string) => {
-              const shiftType = filterShiftsByDate(traderObject, date);
+            {dates.map((dateObject: IDate) => {
+              const shiftType = filterShiftsByDate(
+                traderObject,
+                dateObject.date
+              );
               return (
                 <td
                   className={`p-3 border border-black ${
