@@ -1,5 +1,5 @@
-import { TOriginalFormArrayOfObjects, IOriginalShiftObject } from "../types/originalDataTypes";
-import { INewDateAndShiftTypeObject} from "../types/newDataTypes";
+import { TOriginalFormArrayOfObjects, IOriginalShiftObject } from "../../types/originalDataTypes";
+import { INewDateAndShiftTypeObject} from "../../types/newDataTypes";
 
 export const extractTraderNames = (data: TOriginalFormArrayOfObjects) => {
   let nameArray: string[] = [];

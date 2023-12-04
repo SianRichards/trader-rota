@@ -1,5 +1,5 @@
-import { exampleTraderObject } from "../dummyData";
-import { filterShiftsByDate } from "./tableHelpers";
+import { exampleTraderObject } from "../../dummyData";
+import { filterShiftsByDate } from ".";
 
 describe("filterShiftsByDate", () => {
   it("should return a shiftType to indicate whether a trader is working on the inputted date", () => {

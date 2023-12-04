@@ -4,8 +4,8 @@ import {
   getArrayOfDates,
   getEndDate,
   getStartDate,
-} from "./dataHelper";
-import { arrayOfTraderObjects, dummyData } from "../dummyData";
+} from ".";
+import { arrayOfTraderObjects, dummyData } from "../../dummyData";
 
 const traders = extractTraderNames(dummyData);
 

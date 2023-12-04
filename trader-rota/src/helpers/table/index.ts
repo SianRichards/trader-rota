@@ -1,7 +1,7 @@
 import {
   INewDateAndShiftTypeObject,
   INewNameAndShiftsObject,
-} from "../types/newDataTypes";
+} from "../../types/newDataTypes";
 
 export const filterShiftsByDate = (
   traderObject: INewNameAndShiftsObject,
