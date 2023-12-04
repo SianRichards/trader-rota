@@ -1,5 +1,5 @@
 import { TOriginalFormArrayOfObjects, IOriginalShiftObject } from "../../types/originalDataTypes";
-import { INewDateAndShiftTypeObject} from "../../types/newDataTypes";
+import { IDate, INewDateAndShiftTypeObject} from "../../types/newDataTypes";
 
 export const extractTraderNames = (data: TOriginalFormArrayOfObjects) => {
   let nameArray: string[] = [];
@@ -23,6 +23,7 @@ export const addShiftsToTrader = (traders: Array<string>, data: TOriginalFormArr
         shifts.push({
           date: new Date(dataObj.date).toLocaleDateString("en-UK"),
           shiftType: dataObj.shift,
+          day: dataObj.dow,
         });
       }
     });
