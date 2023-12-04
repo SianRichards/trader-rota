@@ -173,3 +173,21 @@ export const arrayOfTraderObjects = [
     ],
   },
 ];
+
+export const exampleTraderObject = {
+  name: "Jack",
+  shifts: [
+    {
+      date: "10/11/2023",
+      shiftType: "PM",
+    },
+    {
+      date: "12/11/2023",
+      shiftType: "AM",
+    },
+    {
+      date: "13/11/2023",
+      shiftType: "PM",
+    },
+  ],
+};
