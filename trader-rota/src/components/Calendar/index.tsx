@@ -12,7 +12,9 @@ import {
   getArrayOfDates,
 } from "../../helpers/dataHelper";
 import { getAllDaysOfTheYear } from "../../helpers/calendarHelpers";
-import { filterShiftsByDate } from "../../helpers/tableHelpers";
+import {
+  filterShiftsByDate,
+} from "../../helpers/tableHelpers";
 
 const Calendar = () => {
   const [data, setData] = useState<TOriginalForm>([]);
