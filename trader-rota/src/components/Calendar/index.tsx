@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getTraderRotaInfo } from "../../api";
 import {
-  IData,
-  IRotaPlan,
-} from "../../types";
+  TOriginalForm,
+  TOriginalFormArrayOfObjects,
+} from "../../types/originalDataTypes";
 import {
   extractTraderNames,
   addShiftsToTrader,
@@ -18,13 +18,14 @@ import {
 } from "../../helpers/tableHelpers";
 
 const Calendar = () => {
-  const [data, setData] = useState<IData>([]);
-  const [formattedData, setFormattedData] = useState<IRotaPlan>([]);
+  const [data, setData] = useState<TOriginalForm>([]);
+  const [formattedData, setFormattedData] =
+    useState<TOriginalFormArrayOfObjects>([]);
   const [traders, setTraders] = useState<Array<string>>([]);
   const [dates, setDates] = useState<Array<string>>([]);
 
   useEffect(() => {
-    getTraderRotaInfo().then((response: { data: IData }) => {
+    getTraderRotaInfo().then((response: { data: TOriginalForm }) => {
       setData(response.data);
     });
   }, []);

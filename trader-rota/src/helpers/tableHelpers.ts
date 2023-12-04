@@ -1,22 +1,26 @@
-import { IShift, IShiftsPerTrader, IShiftsPerTraderArray } from "../types";
+import {
+  INewDateAndShiftTypeObject,
+  INewNameAndShiftsObject,
+  TNewArrayOfShiftsByTrader,
+} from "../types/newDataTypes";
 
 export const filterShiftsByName = (
   trader: string,
-  newAllShifts: IShiftsPerTraderArray
+  newAllShifts: TNewArrayOfShiftsByTrader
 ) => {
-  return newAllShifts.filter((shiftObject: IShiftsPerTrader) => {
+  return newAllShifts.filter((shiftObject: INewNameAndShiftsObject) => {
     return shiftObject.name === trader;
   });
 };
 
 export const filterShiftsByDate = (
-  traderObject: IShiftsPerTraderArray,
+  traderObject: TNewArrayOfShiftsByTrader,
   date: string
 ) => {
   // input: object containing trader name and a list of their shifts and a date
   let shiftType = "None";
-  traderObject.forEach((element: IShiftsPerTrader) => {
-    return element.shifts.map((shift: IShift) => {
+  traderObject.forEach((element: INewNameAndShiftsObject) => {
+    return element.shifts.map((shift: INewDateAndShiftTypeObject) => {
       if (shift.date === date) {
         shiftType = shift.shiftType;
       }
