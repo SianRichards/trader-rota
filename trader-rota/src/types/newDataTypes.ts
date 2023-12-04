@@ -7,6 +7,7 @@
 export interface INewDateAndShiftTypeObject {
   date: string;
   shiftType: string;
+  day: string;
 }
 
 export interface INewNameAndShiftsObject {
@@ -15,3 +16,8 @@ export interface INewNameAndShiftsObject {
 }
 
 export type TNewArrayOfShiftsByTrader = Array<INewNameAndShiftsObject>;
+
+export interface IDate {
+  date: string;
+  day: string;
+}
