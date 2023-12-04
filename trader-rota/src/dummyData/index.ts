@@ -80,14 +80,17 @@ export const arrayOfTraderObjects = [
       {
         date: "10/11/2023",
         shiftType: "AM",
+        day: "Friday",
       },
       {
         date: "13/11/2023",
         shiftType: "AM",
+        day: "Monday",
       },
       {
         date: "14/11/2023",
         shiftType: "AM",
+        day: "Tuesday",
       },
     ],
   },
@@ -97,10 +100,12 @@ export const arrayOfTraderObjects = [
       {
         date: "10/11/2023",
         shiftType: "AM",
+        day: "Friday",
       },
       {
         date: "14/11/2023",
         shiftType: "AM",
+        day: "Tuesday",
       },
     ],
   },
@@ -110,18 +115,22 @@ export const arrayOfTraderObjects = [
       {
         date: "10/11/2023",
         shiftType: "PM",
+        day: "Friday",
       },
       {
         date: "12/11/2023",
         shiftType: "AM",
+        day: "Sunday",
       },
       {
         date: "13/11/2023",
         shiftType: "AM",
+        day: "Monday",
       },
       {
         date: "13/11/2023",
         shiftType: "PM",
+        day: "Monday",
       },
     ],
   },
@@ -131,14 +140,17 @@ export const arrayOfTraderObjects = [
       {
         date: "10/11/2023",
         shiftType: "PM",
+        day: "Friday",
       },
       {
         date: "12/11/2023",
         shiftType: "PM",
+        day: "Sunday",
       },
       {
         date: "13/11/2023",
         shiftType: "PM",
+        day: "Monday",
       },
     ],
   },
@@ -148,14 +160,17 @@ export const arrayOfTraderObjects = [
       {
         date: "10/11/2023",
         shiftType: "PM",
+        day: "Friday",
       },
       {
         date: "11/11/2023",
         shiftType: "PM",
+        day: "Saturday",
       },
       {
         date: "13/11/2023",
         shiftType: "PM",
+        day: "Monday",
       },
     ],
   },
@@ -165,10 +180,12 @@ export const arrayOfTraderObjects = [
       {
         date: "11/11/2023",
         shiftType: "AM",
+        day: "Saturday",
       },
       {
         date: "14/11/2023",
         shiftType: "AM",
+        day: "Tuesday",
       },
     ],
   },
@@ -180,14 +197,17 @@ export const exampleTraderObject = {
     {
       date: "10/11/2023",
       shiftType: "PM",
+      day: "Friday",
     },
     {
       date: "12/11/2023",
       shiftType: "AM",
+      day: "Sunday",
     },
     {
       date: "13/11/2023",
       shiftType: "PM",
+      day: "Monday",
     },
   ],
 };
