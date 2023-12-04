@@ -1,6 +1,7 @@
-import { IRotaPlan, IShift, IShiftData } from "../types";
+import { TOriginalFormArrayOfObjects, IOriginalShiftObject } from "../types/originalDataTypes";
+import { INewDateAndShiftTypeObject} from "../types/newDataTypes";
 
-export const extractTraderNames = (data: IRotaPlan) => {
+export const extractTraderNames = (data: TOriginalFormArrayOfObjects) => {
   let nameArray: string[] = [];
   data.forEach((dataObject: any) => {
     let desks: Array<string> = ["desk_1", "desk_2", "desk_3"];
@@ -13,10 +14,10 @@ export const extractTraderNames = (data: IRotaPlan) => {
   return nameArray;
 };
 
-export const addShiftsToTrader = (traders: Array<string>, data: IRotaPlan) => {
+export const addShiftsToTrader = (traders: Array<string>, data: TOriginalFormArrayOfObjects) => {
   return traders.map((trader: string) => {
-    let shifts: Array<IShift> = [];
-    data.forEach((dataObj: IShiftData) => {
+    let shifts: Array<INewDateAndShiftTypeObject> = [];
+    data.forEach((dataObj: IOriginalShiftObject) => {
       const desks = [dataObj.desk_1, dataObj.desk_2, dataObj.desk_3];
       if (desks.includes(trader)) {
         shifts.push({
@@ -32,9 +33,9 @@ export const addShiftsToTrader = (traders: Array<string>, data: IRotaPlan) => {
   });
 };
 
-export const getArrayOfDates = (data: IRotaPlan) => {
+export const getArrayOfDates = (data: TOriginalFormArrayOfObjects) => {
   let datesArray: string[] = [];
-  data.map((shift: IShiftData) => {
+  data.map((shift: IOriginalShiftObject) => {
     if (!datesArray.includes(shift.date)) {
       datesArray.push(shift.date);
     }
