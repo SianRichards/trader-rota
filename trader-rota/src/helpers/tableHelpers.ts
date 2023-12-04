@@ -15,3 +15,6 @@ export const filterShiftsByDate = (
   });
   return shiftType;
 }; // output: shiftType to indicate whether the trader is working on the inputted date
+
+
+// handle days where there are two shifts? see if a trader will ever work back-to-back shifts
