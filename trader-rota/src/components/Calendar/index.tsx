@@ -67,7 +67,9 @@ const Calendar = () => {
       {newAllShifts.map((traderObject) => {
         return (
           <tr>
-            <td>{traderObject.name}</td>
+            <td className="p-3 border border-black font-bold">
+              {traderObject.name}
+            </td>
             {dates.map((dateObject: IDate) => {
               const shiftType = filterShiftsByDate(
                 traderObject,
