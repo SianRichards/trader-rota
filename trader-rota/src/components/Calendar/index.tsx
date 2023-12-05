@@ -11,10 +11,7 @@ import {
   getEndDate,
   getArrayOfDates,
 } from "../../helpers/data";
-import {
-  getAllDates,
-  getWeeks,
-} from "../../helpers/calendar";
+import { getAllDates, getWeeks } from "../../helpers/calendar";
 import { filterShiftsByDate } from "../../helpers/table";
 import { IDate } from "../../types/newDataTypes";
 
@@ -122,10 +119,20 @@ const Calendar = () => {
   );
 
   const buttons = (
-    <>
-      <button onClick={() => showNextWeek()}>Next</button>
-      <button onClick={() => showPreviousWeek()}>Previous</button>
-    </>
+    <div className="flex">
+      <button
+        className="mr-2 mb-2 p-2 border border-black font-bold"
+        onClick={() => showNextWeek()}
+      >
+        Next
+      </button>
+      <button
+        className="mr-2 mb-2 p-2 border border-black font-bold"
+        onClick={() => showPreviousWeek()}
+      >
+        Previous
+      </button>
+    </div>
   );
 
   return (
