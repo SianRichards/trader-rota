@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getTraderRotaInfo } from "../../api";
 import {
   TOriginalForm,
@@ -12,13 +12,11 @@ import {
   getArrayOfDates,
 } from "../../helpers/data";
 import {
-  getAllDaysOfTheYear,
   getAllDates,
   getWeeks,
 } from "../../helpers/calendar";
 import { filterShiftsByDate } from "../../helpers/table";
 import { IDate } from "../../types/newDataTypes";
-import Week from "../week";
 
 const Calendar = () => {
   const [data, setData] = useState<TOriginalForm>([]);
@@ -26,7 +24,7 @@ const Calendar = () => {
     useState<TOriginalFormArrayOfObjects>([]);
   const [traders, setTraders] = useState<Array<string>>([]);
   const [dates, setDates] = useState<Array<IDate>>([]);
-  // const [weeks, setWeeks] = useState<Array<any>>([]);
+  const [weeks, setWeeks] = useState<Array<any>>([]);
 
   useEffect(() => {
     getTraderRotaInfo().then((response: { data: TOriginalForm }) => {
@@ -41,33 +39,40 @@ const Calendar = () => {
   }, [data]);
 
   useEffect(() => {
-    if (formattedData) {
+    if (formattedData && formattedData.length !== 0) {
+      // create an array of trader names based on BE data
       const tradersArray = extractTraderNames(formattedData);
       setTraders(tradersArray);
+      // create an array containing all dates in BE data
       const datesArray = getArrayOfDates(formattedData);
+      // from this array take the earliest & latest date
       const startDate = getStartDate(datesArray);
       const endDate = getEndDate(datesArray);
+      // create an array of all dates between the earliest & latest date
       const dates = getAllDates(new Date(startDate), new Date(endDate));
-      const weeks = getWeeks(dates)
-      setDates(weeks[0])
+      // split this array into weeks
+      const weeks = getWeeks(dates);
+      setWeeks(weeks);
+      // render the first week in the array by default
+      setDates(weeks[0]);
     }
   }, [formattedData]);
 
-  // const showNextWeek = () => {
-  //   const currentWeekIndex = weeks.indexOf(dates);
-  //   const nextWeekIndex = currentWeekIndex + 1;
-  //   if (weeks.length > nextWeekIndex) {
-  //     setWeeks(weeks[nextWeekIndex]);
-  //   }
-  // };
+  const showNextWeek = () => {
+    const currentWeekIndex = weeks.indexOf(dates);
+    const nextWeekIndex = currentWeekIndex + 1;
+    if (weeks.length > nextWeekIndex) {
+      setDates(weeks[nextWeekIndex]);
+    }
+  };
 
-  // const showPreviousWeek = () => {
-  //   const currentWeekIndex = weeks.indexOf(dates);
-  //   const previousWeekIndex = currentWeekIndex - 1;
-  //   if (previousWeekIndex >= 0) {
-  //     setWeeks(weeks[previousWeekIndex]);
-  //   }
-  // };
+  const showPreviousWeek = () => {
+    const currentWeekIndex = weeks.indexOf(dates);
+    const previousWeekIndex = currentWeekIndex - 1;
+    if (previousWeekIndex >= 0) {
+      setDates(weeks[previousWeekIndex]);
+    }
+  };
 
   const newAllShifts = addShiftsToTrader(traders, formattedData);
 
@@ -116,18 +121,18 @@ const Calendar = () => {
     </>
   );
 
-  // const buttons = (
-  //   <>
-  //     <button onClick={() => showNextWeek()}>Next</button>
-  //     <button onClick={() => showPreviousWeek()}>Previous</button>
-  //   </>
-  // );
+  const buttons = (
+    <>
+      <button onClick={() => showNextWeek()}>Next</button>
+      <button onClick={() => showPreviousWeek()}>Previous</button>
+    </>
+  );
 
   return (
     <div>
       <table className="m-5">
         <caption className="font-bold p-3 text-xl">Trader shifts</caption>
-        {/* {buttons} */}
+        {buttons}
         <tbody className="bg-slate-300 border border-black">
           {datesRow}
           {tradersRow}
