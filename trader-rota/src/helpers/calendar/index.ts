@@ -1,5 +1,3 @@
-import { dummyDates, dummyEndDate, dummyStartDate } from "../../dummyData";
-
 export const getAllDaysOfTheYear = (startDate: Date, endDate: Date) => {
   const daysOfTheYear = [];
 
@@ -16,6 +14,7 @@ export const getAllDaysOfTheYear = (startDate: Date, endDate: Date) => {
 };
 
 export const getAllDates = (startDate: Date, endDate: Date) => {
+  // get all dates between startDate and endDate
   const daysOfTheYear = [];
 
   let currentDate = new Date(startDate);
@@ -25,15 +24,12 @@ export const getAllDates = (startDate: Date, endDate: Date) => {
     currentDate.setDate(currentDate.getDate() + 1);
   }
   return daysOfTheYear;
-
 };
 
-// get all dates between startDate and endDate
-// split the dates into weeks
-// for each week array replace each date with
-// a date and day object
-
 export const getWeeks = (dates: any) => {
+  // split the dates into weeks
+  // for each week array replace each date with
+  // a date and day object
   const weeks: any = [];
   let currentWeek: any = [];
 
@@ -53,8 +49,3 @@ export const getWeeks = (dates: any) => {
   }
   return weeks;
 };
-
-const allDates = getAllDates(dummyStartDate, dummyEndDate);
-export const weekified = getWeeks(allDates)
-
-console.log(weekified);
