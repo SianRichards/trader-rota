@@ -1,3 +1,6 @@
+export const dummyStartDate = "10/11/2023";
+export const dummyEndDate = "14/11/2023";
+
 export const dummyData = [
   {
     date: "2023-11-10",
@@ -211,3 +214,59 @@ export const exampleTraderObject = {
     },
   ],
 };
+
+export const dummyWeeks = [
+  {
+    date: "10/11/2023",
+    day: "Friday",
+  },
+  {
+    date: "11/11/2023",
+    day: "Saturday",
+  },
+  {
+    date: "12/11/2023",
+    day: "Sunday",
+  },
+  {
+    date: "13/11/2023",
+    day: "Monday",
+  },
+  {
+    date: "14/11/2023",
+    day: "Tuesday",
+  },
+];
+
+export const dummyDates = [
+  new Date("2023-01-01"),
+  new Date("2023-01-02"),
+  new Date("2023-01-03"),
+  new Date("2023-01-04"),
+  new Date("2023-01-05"),
+  new Date("2023-01-06"),
+  new Date("2023-01-07"),
+  new Date("2023-01-08"),
+  new Date("2023-01-09"),
+  new Date("2023-01-10"),
+  new Date("2023-01-11"),
+  new Date("2023-01-12"),
+  new Date("2023-01-13"),
+  new Date("2023-01-14"),
+  new Date("2023-01-15"),
+  new Date("2023-01-16"),
+  new Date("2023-01-17"),
+  new Date("2023-01-18"),
+  new Date("2023-01-19"),
+  new Date("2023-01-20"),
+  new Date("2023-01-21"),
+  new Date("2023-01-22"),
+  new Date("2023-01-23"),
+  new Date("2023-01-24"),
+  new Date("2023-01-25"),
+  new Date("2023-01-26"),
+  new Date("2023-01-27"),
+  new Date("2023-01-28"),
+  new Date("2023-01-29"),
+  new Date("2023-01-30"),
+];
