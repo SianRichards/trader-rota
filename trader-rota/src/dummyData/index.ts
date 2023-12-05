@@ -1,5 +1,5 @@
-export const dummyStartDate = "10/11/2023";
-export const dummyEndDate = "14/11/2023";
+export const dummyStartDate =   new Date("2023-11-10");
+export const dummyEndDate = new Date("2023-12-30");
 
 export const dummyData = [
   {
